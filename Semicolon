@@ -1,0 +1,23 @@
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local userInputService = game:GetService("UserInputService")
+
+userInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end -- Игнорируем, если событие было обработано игрой
+
+    if input.KeyCode == Enum.KeyCode.Semicolon then -- Проверяем, была ли нажата клавиша ;
+        local currentCFrame = humanoidRootPart.CFrame
+        print("CFrame скопирован: " .. tostring(currentCFrame))
+        
+        -- Копируем CFrame в буфер обмена (если поддерживается)
+        if pcall(function()
+            setclipboard(tostring(currentCFrame))
+        end) then
+            print("CFrame успешно скопирован в буфер обмена!")
+        else
+            print("Не удалось скопировать CFrame в буфер обмена.")
+        end
+    end
+end)
