@@ -21,3 +21,22 @@ userInputService.InputBegan:Connect(function(input, gameProcessed)
         end
     end
 end)
+
+--🎩🎩Send Notification🎩🎩
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+
+-- Создаем функцию для отображения оповещения
+local function sendNotification()
+    local message = "Press ;"
+    
+    -- Отправляем уведомление всем игрокам
+    StarterGui:SetCore("SendNotification", {
+        Title = "CFrame в буфер обмена",
+        Text = message,
+        Duration = 8 -- Продолжительность уведомления в секундах
+    })
+end
+
+-- Вызываем функцию
+sendNotification()
